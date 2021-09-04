@@ -36,7 +36,7 @@ void Laberinto::Dibujar(Graphics^ g) {
 		stack.pop_back();
 		current = aux;
 	}
-	Dibujar_Current(g);
+//	Dibujar_Current(g);
 }
 Celda* Laberinto::colision(Rectangle per) {
 	for (int i = 0; i < grid.size(); i++) {

@@ -29,7 +29,7 @@ void Jugador::Dibujar(Graphics^ g, Bitmap^ img)
 {
 	Rectangle corte = Rectangle(IDx * ancho, accion * alto, ancho, alto);
 	g->DrawImage(img, Area(), corte, GraphicsUnit::Pixel);
-	g->DrawRectangle(Pens::Red, HitBox());
+	//g->DrawRectangle(Pens::Red, HitBox());
 
 
 	if (accion >= AtacarArriba && accion <= AtacarDerecha) {

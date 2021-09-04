@@ -112,11 +112,6 @@ namespace MAze {
 			timer1->Enabled = false;
 		}
 		
-		if (obj_juego->Iniciar_Conversacion()){
-			timer1->Enabled = false;
-			//Conversacion^ incio = gcnew Conversacion();
-			//incio->ShowDialog();
-		}
 		if (obj_juego->Final_Juego_Perdio()) {
 			buffer->Graphics->Clear(Color::Black);
 			obj_juego->Mensaje_final_perdio(buffer->Graphics);
@@ -127,9 +122,6 @@ namespace MAze {
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		
 		obj_juego->MoverJugador(true, e->KeyCode);
-		if (e->KeyCode == Keys::Escape) {
-			timer1->Enabled = true;
-		}
 		if (e->KeyCode == Keys::Space) {
 			obj_juego->Entrada_asesinos(img_asesino);
 		}

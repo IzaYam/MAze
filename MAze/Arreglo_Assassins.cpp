@@ -80,7 +80,7 @@ void Arreglo_Assassins::Mover_asesinos(Graphics^ g) {
 void Arreglo_Assassins::Graficar_asesinos(Bitmap^ img_asesino, Graphics^ g) {
 	for (int i = 0; i < cant; i++)
 	{
-		Retornar_asesinoiterador(i)->elemento.Dibujar(img_asesino, g);
+		Retornar_asesino(i)->elemento.Dibujar(img_asesino, g);
 	}
 }
 bool Arreglo_Assassins::Colision_Jugador_Asesino(Rectangle jug) {
@@ -89,7 +89,7 @@ bool Arreglo_Assassins::Colision_Jugador_Asesino(Rectangle jug) {
 	Rectangle asesino;
 	for (int i = 0; i < cant; i++)
 	{
-		asesino = Retornar_asesinoiterador(i)->elemento.HitBox();
+		asesino = Retornar_asesino(i)->elemento.HitBox();
 		if (asesino.IntersectsWith(jugador)) {
 			choco = true;
 			Eliminar_Asesino(i);

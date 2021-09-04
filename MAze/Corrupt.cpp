@@ -44,7 +44,7 @@ void Corrupt::Dibujar(Bitmap^ img, Graphics^ g,Bitmap^cambio) {
 	else {
 		g->DrawImage(cambio, Area(), corte, GraphicsUnit::Pixel);
 	}
-	g->DrawRectangle(Pens::Orange, HitBox());
+	//g->DrawRectangle(Pens::Orange, HitBox());
 	if ((dir >= Caminar2Arriba && dir <= Caminar2Derecha) && dx != 0 || dy != 0)
 		IDx = (IDx + 1) % 8;
 	else if (dir == Morir_enemigo)

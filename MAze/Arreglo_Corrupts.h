@@ -27,12 +27,7 @@ public:
 		bool operator != (Iterador it) { return aux != it.aux; }
 		NodoD<Corrupt>* operator* () { return aux; }
 	};
-	Iterador inicial() {
-		return Iterador(inicio);
-	};
-	Iterador ultimo() {
-		return Iterador(nullptr);
-	};
+	
 	Arreglo_Corrupts();
 	Arreglo_Corrupts(int n, Bitmap^ img_enemigo);
 	void AgregarCorrupt(Bitmap^ img_enemigo);
@@ -41,15 +36,7 @@ public:
 	int retornar_cant();
 	NodoD<Corrupt>* Retornar_corrupt(int pos);
 	NodoD<Corrupt>* RecursivoRetornar(NodoD<Corrupt>* i, int pos, int s);
-	NodoD<Corrupt>* Retornar_corruptIterador(int pos) {
-		Iterador i = inicial();
-		short id = 0;
-		for (i; i != ultimo(); ++i, ++id) {
-			if (id == pos)
-				return *i;
-		}
-
-	}
+	
 	void Colision_Aliado_Corrupt(ArrAliados* arreglo_aliados, Bitmap^ img);
 
 	void Eliminar_corrupt(int pos);

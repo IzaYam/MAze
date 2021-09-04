@@ -71,14 +71,14 @@ void ArrAliados::Mover2(Graphics^ g, Rectangle jug)
 		for (int i = 0; i < Seguidores.size(); i++) {
 
 			if (jug.X < Seguidores.at(i)->GetX()) {
-				Seguidores.at(i)->Cambiar_direccion(Caminar2Derecha);
+				Seguidores.at(i)->Cambiar_direccion(Caminar2Izquierda);
 				Seguidores.at(i)->SetDX(-2);
 				Seguidores.at(i)->SetDY(0);
 
 			}
 			if (jug.X > Seguidores.at(i)->GetX())
 			{
-				Seguidores.at(i)->Cambiar_direccion(Caminar2Izquierda);
+				Seguidores.at(i)->Cambiar_direccion(Caminar2Derecha);
 				Seguidores.at(i)->SetDX(2);
 				Seguidores.at(i)->SetDY(0);
 			}

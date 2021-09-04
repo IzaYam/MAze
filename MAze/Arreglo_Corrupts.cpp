@@ -79,7 +79,7 @@ NodoD<Corrupt>* Arreglo_Corrupts::RecursivoRetornar(NodoD<Corrupt>* i, int pos, 
 void Arreglo_Corrupts::Mover_Corrupts(Graphics^ g) {
 	for (int i = 0; i < cant; i++)
 	{
-		Retornar_corruptIterador(i)->elemento.Mover(g);
+		Retornar_corrupt(i)->elemento.Mover(g);
 	}
 }
 void Arreglo_Corrupts::Graficar_Corrupts(Bitmap^ img_enemigo, Graphics^ g, Bitmap^ img_aliado) {
@@ -94,7 +94,7 @@ void Arreglo_Corrupts::Colision_Aliado_Corrupt(ArrAliados* arreglo_aliados, Bitm
 		Rectangle Aliado = Rectangle(arreglo_aliados->retornar_pos_aliado(i)->HitBox());
 		for (int j = 0; j < cant; j++)
 		{
-			Rectangle Enemigo = Rectangle(Retornar_corruptIterador(j)->elemento.HitBox());
+			Rectangle Enemigo = Rectangle(Retornar_corrupt(j)->elemento.HitBox());
 			if (Enemigo.IntersectsWith(Aliado)) {
 				arreglo_aliados->Eliminar_aliado(i);
 				AgregarCorrupt(img);
