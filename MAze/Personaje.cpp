@@ -1,8 +1,8 @@
 #include "Personaje.h"
-Jugador::Jugador(Bitmap^ img)
+Jugador::Jugador(Bitmap^ img,int x, int y)
 {
-	x = 1;
-	y = 1;
+	//x = 1;
+	//y = 1;
 	dx = dy = 0;
 	ancho = img->Width / 11;
 	alto = img->Height / 13;

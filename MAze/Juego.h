@@ -6,6 +6,10 @@
 #include "ArrAliados.h"
 #include "Puerta.h"
 #include "Arreglo_Assassins.h"
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <cstdlib>
 class Juego
 {
 private:
@@ -17,7 +21,7 @@ private:
 	int cool_down_convo;
 	int reloj;
 	bool aparecer_asesinos;
-	fstream arcEsc;
+	fstream resume;
 	Jugador* jugador;
 	Laberinto* lab;
 	Celda* choca;
