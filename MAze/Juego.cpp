@@ -11,47 +11,82 @@ Juego::~Juego()
 }
 
 void Juego::Iniciar(bool habilitarlectura,Graphics^ g, Bitmap^ img, Bitmap^ img_enemigo, Bitmap^ img_aliado, Bitmap^ img_puerta, Bitmap^ img_asesino) {
-	auto leer_datos = [&]() {
-		fstream archLec("datos.txt", ios::in);
-		string nombre, dato;
-		while (getline(archLec, nombre)) {
-			stringstream linea(nombre);
-			getline(linea, dato, ' ');
-			cantCorrupts = stoi(dato);
-			getline(linea, dato, ' ');
-			cantAssassins = stoi(dato);
-			getline(linea, dato, ' ');
-			cant_vidas_personaje = stoi(dato);
-
-		}
-		archLec.close();
-	};
+	//auto leer_datos = [&]() {
 	if (habilitarlectura) {
-		leer_datos();
+		fstream resume("LastGame.txt", ios::in);
+		int i = 0;
+		if (resume.is_open()) {
+			string nombre, dato;
+			while (getline(resume, nombre)) {
+				stringstream linea(nombre);
+				if (i == 0) {
+					string pos; stringstream strPosAss(nombre);
+					getline(strPosAss, pos, ' '); int num = atoi(pos.c_str());
+					getline(strPosAss, pos, ' '); int num2 = atoi(pos.c_str());
+					jugador = new Jugador(img, num, num2);
+				}
+				if (i == 1) {
+					getline(linea, dato, ' ');
+					cantAliados = stoi(dato);
+				}
+				if (i == 2) {
+					getline(linea, dato, ' ');
+					cantCorrupts = stoi(dato);
+				}
+				if (i == 3) {
+					getline(linea, dato, ' ');
+					cantAssassins = stoi(dato);
+				}
+				if (i == 4) {
+					getline(linea, dato, ' ');
+					cant_vidas_personaje = stoi(dato);
+				}
+				//if (i >= 5 && i <= aliados->retornar_cant() + 4) {
+				//	aliados->retornar_pos_aliado(i)->SetX(1);
+				//}
+				++i;
+			}
+			resume.close();
+		}
+		//};
 	}
-	else {
+	//if (habilitarlectura) {
+		//leer_datos();
+	//}
+	else if (habilitarlectura == false) {
 		cantAliados = 7;
 		cantCorrupts = cantAliados * 0.40;
 		cantAssassins = cantAliados * 0.60;
+		jugador = new Jugador(img,1,1);
 	}
-
+	
 	puertita = new Puerta(1060, 380, img_puerta);
 	portal = new Puerta(1, 380, img_puerta);
-	jugador = new Jugador(img);
 	lab = new Laberinto();
 	corrupts = new Arreglo_Corrupts(cantCorrupts, img_enemigo);
 	aliados = new ArrAliados(g, img_aliado, cantAliados);
 	Asesinos = new Arreglo_Assassins(cantAssassins, img_asesino);
-	
+
 	lab->Iniciar(g);
 	cool_down_convo = clock();
 }
 void Juego::GuardarJuego() {
-	ofstream arcEsc("datos.txt");
-	arcEsc << corrupts->retornar_cant() << ' ' << Asesinos->retornar_cant() << ' ' << cant_vidas_personaje;
-	arcEsc.close();
+	fstream save("LastGame.txt", ios::out);
+	//for (int i = 0; i < 6; ++i) { //guardar laberinto falta
+		//for (int j = 0; j < 16; ++j) {
+			
+		//}
+	//}
+	save << jugador->GetX() << " " << jugador->GetY() << endl;
+	save << aliados->retornar_cant()<<endl;
+	save << corrupts->retornar_cant() << endl;
+	save << Asesinos->retornar_cant() << endl;
+	save << cant_vidas_personaje << endl;
+	//for (int i = 0; i < aliados->retornar_cant(); ++i) {
+	//	save << aliados->retornar_pos_aliado(i)->GetX() << " " << aliados->retornar_pos_aliado(i)->GetY() << endl;
+	//}
 
-	//al presionar jugar, se guardan los datos de cada uno de los personajes en el archivo "datos.txt"
+	//Presiona A para guardar la partida
 }
 void Juego::Entrada_asesinos(Bitmap^ img_asesino) {
 	aparecer_asesinos = true;
@@ -59,71 +94,70 @@ void Juego::Entrada_asesinos(Bitmap^ img_asesino) {
 }
 void Juego::MoverJugador(bool accion, Keys tecla)
 {
-	if (lab->retornar_cant() == 0) { // -->  1 + (2 + 6) --> 9 T
-		int v = 5; //--> 2 T
-		if (accion == true) // --> 1+ (5) → 6T
+	if (lab->retornar_cant() == 0) { 
+		int v = 5; 
+		if (accion == true) 
 		{
-			if (tecla == Keys::Up) // →   1 + 4 → 5T
+			if (tecla == Keys::Up) 
 			{
-				if (choca->retornar_pared(0) == false && choca->retornar_j() != 0) { //→ 2 + (1)
-					jugador->SetDY(-v); //--> 1 T
+				if (choca->retornar_pared(0) == false && choca->retornar_j() != 0) { 
+					jugador->SetDY(-v);
 				}
 
-				jugador->SetAccion(CaminarArriba); //--> 1T;
+				jugador->SetAccion(CaminarArriba); 
 			}
-			else if (tecla == Keys::Down) //--> 5T
+			else if (tecla == Keys::Down)
 			{
-				if (choca->retornar_pared(2) == false && choca->retornar_j() != 420) { // →2T
+				if (choca->retornar_pared(2) == false && choca->retornar_j() != 420) {
 
-					jugador->SetDY(v); // 1T
+					jugador->SetDY(v); 
 				}
 
-				jugador->SetAccion(CaminarAbajo); // 1T
+				jugador->SetAccion(CaminarAbajo); 
 			}
-			else if (tecla == Keys::Left) // --> 4T
+			else if (tecla == Keys::Left) 
 			{
-				if (choca->retornar_pared(3) == false) { // → 1 + (1)
+				if (choca->retornar_pared(3) == false) { 
 
-					jugador->SetDX(-v); //--> 1T
+					jugador->SetDX(-v); 
 				}
-				jugador->SetAccion(CaminarIzquierda); // --> 1T
+				jugador->SetAccion(CaminarIzquierda); 
 			}
-			else if (tecla == Keys::Right) // 4T
+			else if (tecla == Keys::Right)
 			{
-				if (choca->retornar_pared(1) == false) { // → 1 + (1)
+				if (choca->retornar_pared(1) == false) {
 
-					jugador->SetDX(v); //--> 1T
+					jugador->SetDX(v);
 				}
 
-				jugador->SetAccion(CaminarDerecha); //--> 1T
+				jugador->SetAccion(CaminarDerecha);
 			}
-			else if (tecla == Keys::Escape) { // --> 3T
-				if (jugador->GetAccion() == CaminarArriba) // → 1 + (1)
-					jugador->SetAccion(AtacarArriba); // → 1T
-				else if (jugador->GetAccion() == CaminarAbajo) // → 1 + (1)
-					jugador->SetAccion(AtacarAbajo);  // → 1T
-				else if (jugador->GetAccion() == CaminarDerecha) // → 1 + (1)
-					jugador->SetAccion(AtacarDerecha); // → 1T
-				else if (jugador->GetAccion() == CaminarIzquierda) // → 1 + (1) 
-					jugador->SetAccion(AtacarIzquierda); // → 1T
-
+			else if (tecla == Keys::Escape) { 
+				if (jugador->GetAccion() == CaminarArriba) 
+					jugador->SetAccion(AtacarArriba); 
+				else if (jugador->GetAccion() == CaminarAbajo) 
+					jugador->SetAccion(AtacarAbajo); 
+				else if (jugador->GetAccion() == CaminarDerecha) 
+					jugador->SetAccion(AtacarDerecha); 
+				else if (jugador->GetAccion() == CaminarIzquierda) 
+					jugador->SetAccion(AtacarIzquierda);
 
 			}
+			else if(tecla==Keys::A) GuardarJuego();
 		}
-		else // 2 T
+		else 
 		{
-			if (tecla == Keys::Up) // → 1 + (1)
-				jugador->SetDY(0); // → 1T
-			else if (tecla == Keys::Down) // → 1 + (1)
-				jugador->SetDY(0); // → 1T
-			else if (tecla == Keys::Left)  // → 1 + (1)
-				jugador->SetDX(0); // → 1T
-			else if (tecla == Keys::Right)  // → 1 + (1)		
-				jugador->SetDX(0); // → 1T
+			if (tecla == Keys::Up) 
+				jugador->SetDY(0); 
+			else if (tecla == Keys::Down) 
+				jugador->SetDY(0); 
+			else if (tecla == Keys::Left)  
+				jugador->SetDX(0); 
+			else if (tecla == Keys::Right) 
+				jugador->SetDX(0); 
 		} 
 	}
 
-	// Tiempo detallado:9T  y  BIG (O): 1
 }
 void Juego::Dibujar(Graphics^ g, Bitmap^ img, Bitmap^ mapa, Bitmap^ img_enemigo, Bitmap^ img_aliado, Bitmap^ img_puerta, Bitmap^ img_asesino) {
 	g->DrawImage(mapa, 0, 0);
@@ -187,7 +221,7 @@ void Juego::Informacion(Graphics^ g) {
 	Font^ f = gcnew Font("Arial", 20);
 	g->DrawString("Vidas: " + cant_vidas_personaje + "   Tiempo" + clock() / 1000, f, Brushes::Black, 1, 420);
 }
-bool Juego::Colision_Puerta_final() {
+bool Juego::Colision_Puerta_final() { 
 	bool finalizo = false;
 	auto colision = [=, &finalizo] {
 		Rectangle jug = jugador->Area();
