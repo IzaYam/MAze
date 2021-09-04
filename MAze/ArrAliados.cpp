@@ -124,3 +124,6 @@ bool ArrAliados::Colision_Aliado_Jugador(Rectangle jugador)
 	}
 	return colision;
 }
+Aliados* ArrAliados::retornar_seguidor(int pos) {
+	return Seguidores.at(pos);
+}

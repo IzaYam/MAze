@@ -23,5 +23,6 @@ public:
 	void Eliminar_aliado(int pos);
 	Aliados* retornar_pos_aliado(int pos);
 	bool Colision_Aliado_Jugador(Rectangle jugador);
-
+	
+	Aliados* retornar_seguidor(int pos);
 };

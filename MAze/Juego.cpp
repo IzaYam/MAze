@@ -20,10 +20,13 @@ void Juego::Iniciar(bool habilitarlectura,Graphics^ g, Bitmap^ img, Bitmap^ img_
 			while (getline(resume, nombre)) {
 				stringstream linea(nombre);
 				if (i == 0) {
-					string pos; stringstream strPosAss(nombre);
-					getline(strPosAss, pos, ' '); int num = atoi(pos.c_str());
-					getline(strPosAss, pos, ' '); int num2 = atoi(pos.c_str());
-					jugador = new Jugador(img, num, num2);
+					jugador = new Jugador(img, i, i);
+					getline(linea, dato, ' '); jugador->SetX(stoi(dato));
+					getline(linea, dato, ' '); jugador->SetY(stoi(dato)); 
+					//string pos; stringstream strPosAss(nombre);
+					//getline(strPosAss, pos, ' '); int num = atoi(pos.c_str());
+					//getline(strPosAss, pos, ' '); int num2 = atoi(pos.c_str());
+					//jugador = new Jugador(img, num, num2);
 				}
 				if (i == 1) {
 					getline(linea, dato, ' ');
@@ -53,7 +56,7 @@ void Juego::Iniciar(bool habilitarlectura,Graphics^ g, Bitmap^ img, Bitmap^ img_
 	//if (habilitarlectura) {
 		//leer_datos();
 	//}
-	else if (habilitarlectura == false) {
+	else{
 		cantAliados = 7;
 		cantCorrupts = cantAliados * 0.40;
 		cantAssassins = cantAliados * 0.60;
@@ -83,7 +86,7 @@ void Juego::GuardarJuego() {
 	save << Asesinos->retornar_cant() << endl;
 	save << cant_vidas_personaje << endl;
 	//for (int i = 0; i < aliados->retornar_cant(); ++i) {
-	//	save << aliados->retornar_pos_aliado(i)->GetX() << " " << aliados->retornar_pos_aliado(i)->GetY() << endl;
+	//	save << aliados->retornar_seguidor(i)->GetX() << " " << aliados->retornar_seguidor(i)->GetY() << endl;
 	//}
 
 	//Presiona A para guardar la partida
@@ -219,7 +222,7 @@ void Juego::Mover(Graphics^ g, Bitmap^ img_aliado) {
 }
 void Juego::Informacion(Graphics^ g) {
 	Font^ f = gcnew Font("Arial", 20);
-	g->DrawString("Vidas: " + cant_vidas_personaje + "   Tiempo" + clock() / 1000, f, Brushes::Black, 1, 420);
+	g->DrawString("Vidas: " + cant_vidas_personaje , f, Brushes::Black, 1, 420);
 }
 bool Juego::Colision_Puerta_final() { 
 	bool finalizo = false;
