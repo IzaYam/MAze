@@ -18,7 +18,7 @@ class Arreglo_Corrupts
 	NodoD<Corrupt>* fin;
 	int cant;
 public:
-	class Iterador {
+	/*class Iterador {
 		NodoD<Corrupt>* aux;
 
 	public:
@@ -26,7 +26,7 @@ public:
 		void operator ++ () { aux = aux->siguiente; }
 		bool operator != (Iterador it) { return aux != it.aux; }
 		NodoD<Corrupt>* operator* () { return aux; }
-	};
+	};*/
 	
 	Arreglo_Corrupts();
 	Arreglo_Corrupts(int n, Bitmap^ img_enemigo);

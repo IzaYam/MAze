@@ -108,11 +108,13 @@ void Arreglo_Corrupts::Colision_Aliado_Corrupt(ArrAliados* arreglo_aliados, Bitm
 void Arreglo_Corrupts::AgregarCorrupt(Bitmap^ img_enemigo) {
 	NodoD<Corrupt>* nuevo = new NodoD<Corrupt>(Corrupt(rand() % (1000 - 800 + 1) + 800, rand() % (400 + 1), img_enemigo));
 	if (cant == 0)
-		inicio = fin = nuevo;
+		inicio = nuevo;
 	else {
-		fin->siguiente = nuevo;
-		nuevo->anterior = fin;
-		fin = nuevo;
+		NodoD<Corrupt>* aux = inicio;
+		while (aux->siguiente != nullptr) {
+			aux = aux->siguiente;
+		}
+		aux->siguiente = nuevo;
 	}
 	++cant;
 }
