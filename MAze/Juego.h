@@ -47,6 +47,6 @@ public:
 	void Mensaje_final_perdio(Graphics^ g);
 	void Mensaje_final_ganador(Graphics^ g);
 	void GuardarJuego();
-	void tiempo();
+	void tiempo(int tiempo);
 
 };
