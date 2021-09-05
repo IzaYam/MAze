@@ -201,7 +201,7 @@ void Juego::Mover(Graphics^ g, Bitmap^ img_aliado) {
 			enemigo = corrupts->Retornar_corrupt(i)->elemento.HitBox();
 			if (jug.IntersectsWith(enemigo)) {
 				corrupts->Retornar_corrupt(i);
-				cant_vidas_personaje -= 10;
+				cant_vidas_personaje -= 1;
 			}
 		}
 	};
@@ -216,7 +216,7 @@ void Juego::Mover(Graphics^ g, Bitmap^ img_aliado) {
 			Asesinos->Mover_asesinos(g);
 			Asesinos->Colision_Jugador_Asesino(jugador->HitBox());
 			if (Asesinos->Colision_Jugador_Asesino(jugador->HitBox()))
-				cant_vidas_personaje -= 20;
+				cant_vidas_personaje -= 1;
 		}
 	}
 }

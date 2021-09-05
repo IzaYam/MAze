@@ -39,7 +39,7 @@ public:
 	Nodo<Assassin>* RecursivoRetornar(Nodo<Assassin>* i,int pos, int s);
 	bool Colision_Jugador_Asesino(Rectangle jug);
 
-	void Eliminar_Asesino(int pos);
+	//void Eliminar_Asesino(int pos);
 
 };
 

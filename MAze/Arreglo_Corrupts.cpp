@@ -8,55 +8,55 @@ Arreglo_Corrupts::Arreglo_Corrupts(int n, Bitmap^ img_enemigo) {
 	for (int i = 0; i < n; i++)
 		AgregarCorrupt(img_enemigo);
 }
-void Arreglo_Corrupts::Eliminar_corrupt(int pos) {
-	if (cant == 0)return;
-	else if (cant == 1)
-		inicio = fin = nullptr;
-	else if (pos < cant - 1) {
-		//eliminar si esta al inicio
-		if (pos == 0) {
-			if (cant == 0)return;
-			else if (cant == 1)
-				fin = nullptr;
-			NodoD<Corrupt>* aux = inicio;
-			inicio = inicio->siguiente;
-			inicio->anterior = nullptr;
-			delete aux;
-			--cant;
-		}
-		//eliminar si no esta en el final
-		else {
-			NodoD<Corrupt>* aux = inicio;
-
-			for (int i = 0; i < pos - 1; ++i)
-				aux = aux->siguiente;
-
-			NodoD<Corrupt>* eliminar = aux->siguiente;
-			aux->siguiente = eliminar->siguiente;
-			eliminar->siguiente->anterior = aux;
-
-			delete eliminar;
-
-			--cant;
-		}
-	}
-	//eliminar si esta en el final
-	else if (pos + 1 == cant) {
-		if (cant == 0)return;
-		else if (cant == 1) {
-			delete fin;
-			inicio = fin = nullptr;
-			--cant;
-		}
-		else {
-			fin = fin->anterior;
-			delete fin->siguiente;
-			fin->siguiente = nullptr;
-			--cant;
-		}
-	}
-
-}
+//void Arreglo_Corrupts::Eliminar_corrupt(int pos) {
+//	if (cant == 0)return;
+//	else if (cant == 1)
+//		inicio = fin = nullptr;
+//	else if (pos < cant - 1) {
+//		//eliminar si esta al inicio
+//		if (pos == 0) {
+//			if (cant == 0)return;
+//			else if (cant == 1)
+//				fin = nullptr;
+//			NodoD<Corrupt>* aux = inicio;
+//			inicio = inicio->siguiente;
+//			inicio->anterior = nullptr;
+//			delete aux;
+//			--cant;
+//		}
+//		//eliminar si no esta en el final
+//		else {
+//			NodoD<Corrupt>* aux = inicio;
+//
+//			for (int i = 0; i < pos - 1; ++i)
+//				aux = aux->siguiente;
+//
+//			NodoD<Corrupt>* eliminar = aux->siguiente;
+//			aux->siguiente = eliminar->siguiente;
+//			eliminar->siguiente->anterior = aux;
+//
+//			delete eliminar;
+//
+//			--cant;
+//		}
+//	}
+//	//eliminar si esta en el final
+//	else if (pos + 1 == cant) {
+//		if (cant == 0)return;
+//		else if (cant == 1) {
+//			delete fin;
+//			inicio = fin = nullptr;
+//			--cant;
+//		}
+//		else {
+//			fin = fin->anterior;
+//			delete fin->siguiente;
+//			fin->siguiente = nullptr;
+//			--cant;
+//		}
+//	}
+//
+//}
 int Arreglo_Corrupts::retornar_cant() {
 	return cant;
 }

@@ -39,5 +39,5 @@ public:
 	
 	void Colision_Aliado_Corrupt(ArrAliados* arreglo_aliados, Bitmap^ img);
 
-	void Eliminar_corrupt(int pos);
+	//void Eliminar_corrupt(int pos);
 };
