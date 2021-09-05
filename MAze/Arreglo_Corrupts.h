@@ -18,15 +18,7 @@ class Arreglo_Corrupts
 	NodoD<Corrupt>* fin;
 	int cant;
 public:
-	/*class Iterador {
-		NodoD<Corrupt>* aux;
 
-	public:
-		Iterador(NodoD<Corrupt>* aux = nullptr) : aux(aux) {}
-		void operator ++ () { aux = aux->siguiente; }
-		bool operator != (Iterador it) { return aux != it.aux; }
-		NodoD<Corrupt>* operator* () { return aux; }
-	};*/
 	
 	Arreglo_Corrupts();
 	Arreglo_Corrupts(int n, Bitmap^ img_enemigo);
@@ -39,5 +31,4 @@ public:
 	
 	void Colision_Aliado_Corrupt(ArrAliados* arreglo_aliados, Bitmap^ img);
 
-	//void Eliminar_corrupt(int pos);
 };

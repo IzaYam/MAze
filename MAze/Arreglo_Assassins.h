@@ -20,15 +20,7 @@ private:
 	
 	int cant;
 public:
-	//class Iterador {
-	//	Nodo<Assassin>* aux;
-	//
-	//public:
-	//	Iterador(Nodo<Assassin>* aux = nullptr) : aux(aux) {}
-	//	void operator ++ () { aux = aux->siguiente; }
-	//	bool operator != (Iterador it) { return aux != it.aux; }
-	//	Nodo<Assassin>* operator* () { return aux; }
-	//};
+
 	Arreglo_Assassins();
 	Arreglo_Assassins(int n, Bitmap^ img_enemigo);
 	void AgregarAsesino(Bitmap^ img_enemigo);
@@ -39,7 +31,6 @@ public:
 	Nodo<Assassin>* RecursivoRetornar(Nodo<Assassin>* i,int pos, int s);
 	bool Colision_Jugador_Asesino(Rectangle jug);
 
-	//void Eliminar_Asesino(int pos);
 
 };
 

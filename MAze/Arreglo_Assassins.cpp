@@ -7,51 +7,7 @@ Arreglo_Assassins::Arreglo_Assassins(int n, Bitmap^ img_enemigo) {
 	for (int i = 0; i < n; i++)
 		AgregarAsesino(img_enemigo);
 }
-//void Arreglo_Assassins::Eliminar_Asesino(int pos) {
-//	if (cant == 0)return;
-//	else if (cant == 1)
-//		inicio = fin = nullptr;
-//	else if (pos < cant - 1) {
-//		//eliminar si esta al inicio
-//		if (pos == 0) {
-//			if (cant == 0)return;
-//			else if (cant == 1)
-//				fin = nullptr;
-//			Nodo<Assassin>* aux = inicio;
-//			inicio = inicio->siguiente;
-//			delete aux;
-//			--cant;
-//		}
-//		//eliminar si no esta en el final
-//		else {
-//			Nodo<Assassin>* aux = inicio;
-//
-//			for (int i = 0; i < pos - 1; ++i)
-//				aux = aux->siguiente;
-//
-//			Nodo<Assassin>* eliminar = aux->siguiente;
-//			aux->siguiente = eliminar->siguiente;
-//			delete eliminar;
-//
-//			--cant;
-//		}
-//	}
-//	//eliminar si esta en el final
-//	else if (pos + 1 == cant) {
-//		if (cant == 0)return;
-//		else if (cant == 1) {
-//			delete fin;
-//			inicio = fin = nullptr;
-//			--cant;
-//		}
-//		else {
-//			delete fin->siguiente;
-//			fin->siguiente = nullptr;
-//			--cant;
-//		}
-//	}
-//
-//}
+
 int Arreglo_Assassins::retornar_cant() {
 	return cant;
 }
